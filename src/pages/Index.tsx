@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { ContactForm } from "@/components/ContactForm";
 
 const Index = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -62,15 +63,23 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
-        <p className="text-xl text-muted-foreground">
-          Logged in as: {user.email}
-        </p>
-        <Button onClick={handleSignOut} variant="outline">
-          Sign Out
-        </Button>
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="w-full max-w-4xl">
+        <div className="text-center space-y-8">
+          <div>
+            <h1 className="text-4xl font-bold mb-4">Welcome Back!</h1>
+            <p className="text-xl text-muted-foreground">
+              Logged in as: {user.email}
+            </p>
+            <Button onClick={handleSignOut} variant="outline" className="mt-4">
+              Sign Out
+            </Button>
+          </div>
+          
+          <div className="flex justify-center">
+            <ContactForm user={user} />
+          </div>
+        </div>
       </div>
     </div>
   );
